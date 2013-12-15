@@ -55,3 +55,10 @@ This is the very small configuration of Apache Felix. If you wish to run it, jus
 
     mvn felix:run
 
+## Authors
+
+* Zdenko Vrabel [@sn3d](http://github.com/sn3d)
+
+##Licencing
+
+Copyright (C) 2012-2013 celum Slovaka s r.o. Licensed under the Apache License, Version 2.0
