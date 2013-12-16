@@ -1,3 +1,19 @@
+/*****************************************************************************
+ * Copyright 2013 Zdenko Vrabel
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *****************************************************************************/
 package org.zdevra.felixplugin;
 
 import org.apache.maven.model.Resource;
@@ -12,36 +28,54 @@ import java.nio.channels.FileChannel;
 import java.util.Map;
 
 /**
+ * This is the common class that provide you access to maven common parameters. The
+ * felix plugin goals are extending this class.
  *
+ * @author sn3d (vrabel.zdenko@gmail.com)
  */
 public abstract class AbstractOsgiMojo extends AbstractMojo {
 
+	//------------------------------------------------------------------------------------------------------------------
+	// Parameters
+	//------------------------------------------------------------------------------------------------------------------
+
 	/**
+	 * System propeties
 	 * @parameter
 	 */
 	protected Map<String, String> systemProperties;
 
 	/**
+	 * Apache Felix OSGI propeties
 	 * @parameter
 	 */
 	protected Map<String, String> osgiProperties;
 
 	/**
+	 * Apache Felix configuration file. The properties could be overriden by properties
+	 * you specified in 'osgiProperties'.
 	 * @parameter
 	 */
 	protected Resource configFile;
 
 	/**
+	 * list of bundle URIs. It's same URI you type in felix when you're doing install.
+	 * The scheme 'maven' is special case when bundle is resolved via maven.
 	 * @parameter
 	 */
 	protected String[] bundles;
 
 	/**
+	 * Apache felix cache folder
 	 * @parameter default-value="${project.build.directory}/osgi-cache"
 	 */
 	protected String cache;
 
 
+	//------------------------------------------------------------------------------------------------------------------
+	// methods
+	//------------------------------------------------------------------------------------------------------------------
+
 	/**
 	 * method resolve 'maven:' bundles via maven resolver mechanism and
 	 * returns path to file in local repository.
@@ -49,13 +83,13 @@ public abstract class AbstractOsgiMojo extends AbstractMojo {
 	 * @param mavenDependency
 	 * @return
 	 */
-	protected String resolveBundle(String mavenDependency)
-	{
+	protected String resolveBundle(String mavenDependency) {
 		String dependency = mavenDependency.substring("maven:".length());
 		File[] file = Maven.resolver().resolve(dependency).withoutTransitivity().asFile();
 		return "file:" + file[0].getAbsolutePath();
 	}
 
+
 	/**
 	 * method resolve 'maven:' bundles via maven resolver mechanism and
 	 * returns path to file in local repository.
@@ -63,13 +97,11 @@ public abstract class AbstractOsgiMojo extends AbstractMojo {
 	 * @param mavenDependency
 	 * @return
 	 */
-	protected File resolveBundleAsFile(String mavenDependency)
-	{
+	protected File resolveBundleAsFile(String mavenDependency) {
 		String dependency = mavenDependency.substring("maven:".length());
 		File[] file = Maven.resolver().resolve(dependency).withoutTransitivity().asFile();
 		return file[0];
 	}
-
 
 
 	/**

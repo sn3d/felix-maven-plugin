@@ -1,3 +1,19 @@
+/*****************************************************************************
+ * Copyright 2013 Zdenko Vrabel
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *****************************************************************************/
 package org.zdevra.felixplugin;
 
 import org.apache.commons.io.FileUtils;
@@ -13,15 +29,17 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
+ * The 'run' goal impl.
+ *
  * @aggregator
  * @goal run
+ * @author sn3d (vrabel.zdenko@gmail.com)
  */
 public class RunOsgiMojo extends AbstractOsgiMojo {
 
 
 	@Override
-	public void execute() throws MojoExecutionException, MojoFailureException
-	{
+	public void execute() throws MojoExecutionException, MojoFailureException {
 		try {
 			//setup system properties
 			for (Map.Entry<String, String> property : this.systemProperties.entrySet()) {
@@ -60,8 +78,7 @@ public class RunOsgiMojo extends AbstractOsgiMojo {
 	 *
 	 * @return 'felix' properties
 	 */
-	private Properties createConfiguration() throws IOException
-	{
+	private Properties createConfiguration() throws IOException {
 		//configuration
 		Properties config = new Properties();
 
@@ -87,8 +104,7 @@ public class RunOsgiMojo extends AbstractOsgiMojo {
 	 *
 	 * @throws IOException
 	 */
-	private void cleanCache() throws IOException
-	{
+	private void cleanCache() throws IOException {
 		File cacheDir = new File(this.cache);
 		if (cacheDir.exists()) {
 			FileUtils.deleteDirectory(cacheDir);
@@ -100,8 +116,7 @@ public class RunOsgiMojo extends AbstractOsgiMojo {
 	 * method returns OSGi framework factory needed for start
 	 *
 	 */
-	private FrameworkFactory getOsgiFrameworkFactory() throws Exception
-	{
+	private FrameworkFactory getOsgiFrameworkFactory() throws Exception {
 		java.net.URL url =
 				this.getClass().getClassLoader().getResource("META-INF/services/org.osgi.framework.launch.FrameworkFactory");
 

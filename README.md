@@ -17,7 +17,7 @@ felix:assembly - Create the Apache Felix distribution with bundles and configura
                 <plugin>
 				    <groupId>org.zdevra</groupId>
 				    <artifactId>felix-maven-plugin</artifactId>
-				    <version>1.0.0-SNAPSHOT</version>
+				    <version>1.0.0</version>
                     <configuration>
                         <osgiProperties>
                             <org.osgi.framework.bootdelegation>sun.*,com.sun.*</org.osgi.framework.bootdelegation>
@@ -54,6 +54,29 @@ If you wish to run the Apache felix with some system properties, then you could 
 This is the very small configuration of Apache Felix. If you wish to run it, just type
 
     mvn felix:run
+
+There is another goal `assembly` which is very usefull in modules with maven assembly plugin where is created distribution.
+This goal copy all bundles you specified, create configuration you specified and copy also `felix.jar` into `target/felix`
+folder. The very basic setup for assembly could be:
+
+    <plugin>
+        <groupId>org.zdevra</groupId>
+        <artifactId>felix-maven-plugin</artifactId>
+        <version>1.0.0</version>
+        <executions>
+            <execution>
+                <id>distro-assembly</id>
+                <phase>prepare-package</phase>
+                <goals>
+                    <goal>assembly</goal>
+                </goals>
+            </execution>
+        </executions>
+        <configuration>
+            [...]
+        </configuraton>
+        [...]
+    </plugin>
 
 ## Authors
 
