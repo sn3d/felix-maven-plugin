@@ -84,4 +84,4 @@ folder. The very basic setup for assembly could be:
 
 ##Licencing
 
-Copyright (C) 2012-2013 celum Slovaka s r.o. Licensed under the Apache License, Version 2.0
+Copyright (C) 2013 Zdenko Vrabel Licensed under the Apache License, Version 2.0
