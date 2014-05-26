@@ -17,7 +17,7 @@ felix:assembly - Create the Apache Felix distribution with bundles and configura
                 <plugin>
 				    <groupId>org.zdevra</groupId>
 				    <artifactId>felix-maven-plugin</artifactId>
-				    <version>1.0.0</version>
+				    <version>1.0.1</version>
                     <configuration>
                         <osgiProperties>
                             <org.osgi.framework.bootdelegation>sun.*,com.sun.*</org.osgi.framework.bootdelegation>
@@ -62,7 +62,7 @@ folder. The very basic setup for assembly could be:
     <plugin>
         <groupId>org.zdevra</groupId>
         <artifactId>felix-maven-plugin</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <executions>
             <execution>
                 <id>distro-assembly</id>
