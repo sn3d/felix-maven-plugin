@@ -3,7 +3,7 @@
 
 	<groupId>org.zdevra</groupId>
 	<artifactId>felix-maven-plugin</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>Apache Felix Plugin for Maven</name>
@@ -31,7 +31,7 @@
 	<scm>
 		<connection>scm:git:https://github.com/sn3d/felix-maven-plugin.git</connection>
 		<url>https://github.com/sn3d/felix-maven-plugin.git</url>
-	  <tag>HEAD</tag>
+	  <tag>v1.0.1 fix</tag>
   </scm>
 
 	<dependencies>
